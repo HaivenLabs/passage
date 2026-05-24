@@ -1,0 +1,14 @@
+{
+  "product": "passage",
+  "haivenVersion": 1,
+  "constitutionVersion": 1,
+  "docsSource": "HAIVEN_SOURCE_DIR override",
+  "enabledAgents": {
+    "codex": true
+  },
+  "options": {
+    "hooks": {},
+    "skills": {},
+    "plugins": {}
+  }
+}
