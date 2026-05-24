@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: passage
+      POSTGRES_USER: passage
+      POSTGRES_PASSWORD: passage
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U passage -d passage"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build: .
+    environment:
+      PASSAGE_HTTP_ADDRESS: ":8080"
+      PASSAGE_DATABASE_URL: "postgres://passage:passage@db:5432/passage?sslmode=disable"
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
